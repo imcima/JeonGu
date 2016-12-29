@@ -172,6 +172,12 @@
 											<div class="form-group">
 												<button type="submit" class="btn btn-primary btn-block">Sign
 													in</button>
+												<c:if test="${sessionScope.id ==null }">
+												<input type="button" onclick="location.href='login.investf'" value="Fake Login">
+												</c:if>
+												<c:if test="${sessionScope.id !=null }">
+												<input type="button" onclick="location.href='logout.investf'" value="Fake Logout">
+												</c:if>
 											</div>
 											<div class="checkbox">
 												<label> <input type="checkbox"> keep me

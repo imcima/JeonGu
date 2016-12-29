@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import net.action.Action;
@@ -74,6 +75,22 @@ public class InvestFrontController extends HttpServlet{
 			System.out.println("/content.investf 진입");
 			action = new InvestContentAction();
 			forward=exec(req, resp, action);
+		}
+		
+		
+		// fake login, logout.
+		else if(command.equals("/login.investf")){//fake login
+			System.out.println("/login.investf 진입");
+			HttpSession session = req.getSession(true);
+			session.setAttribute("id", "imcima");
+			action = new FakeLoginAction();
+			forward = exec(req, resp, action);
+		}else if(command.equals("/logout.investf")){//fake logout
+			System.out.println("/logout.investf 진입");
+			HttpSession session = req.getSession(false);
+			session.invalidate();
+			action = new FakeLogoutAction();
+			forward = exec(req, resp, action);
 		}
 		
 		// 실제 이동

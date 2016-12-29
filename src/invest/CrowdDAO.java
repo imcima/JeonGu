@@ -35,7 +35,7 @@ public class CrowdDAO {
 		CrowdDTO cdto = new CrowdDTO();		
 		try {
 			cdto.setCroid(rs.getInt("croid"));
-			cdto.setSellerid(rs.getInt("sellerid"));
+			cdto.setSellerno(rs.getInt("sellerno"));
 			cdto.setCateno(rs.getInt("cateno"));
 			cdto.setSellername(rs.getString("sellername"));
 			cdto.setCroname(rs.getString("croname"));
@@ -46,6 +46,7 @@ public class CrowdDAO {
 			cdto.setState(rs.getInt("state"));
 			cdto.setTitle(rs.getString("title"));
 			cdto.setContent(rs.getString("content"));
+			cdto.setSellerid(rs.getString("sellerid"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

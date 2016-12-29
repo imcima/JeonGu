@@ -1,26 +1,72 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.container{
+	width: 700px;
+	background-color: white;
+	border-radius: 20px;
+}
+</style>
+
+<link href="blog.css" rel="stylesheet">
+
 </head>
 <body>
-<br><br><br>
-croid		 : ${cdto.croid}            <br>
-sellerid     : ${cdto.sellerid}         <br>
-cateno       : ${cdto.cateno}           <br>
-sellername   : ${cdto.sellername}       <br>
-croname      : ${cdto.croname}          <br>
-opendate     : ${cdto.opendate}         <br>
-closedate    : ${cdto.closedate}        <br>
-goalmoney    : ${cdto.goalmoney}        <br>
-total        : ${cdto.total}            <br>
-state        : ${cdto.state}            <br>
-title        : ${cdto.title}            <br>
-content      : ${cdto.content}          <br>
 
+<br><br><br>
+
+<div class="blog-masthead">
+	<div class="container">
+		
+	</div>
+</div>
+    
+<div class="container">
+	<div class="details">
+		<ul>
+			<li>글번호 : ${cdto.croid}</li>
+			<li>개설자 아이디 : ${cdto.sellerid}</li>
+			<li>카테고리 번호 : ${cdto.cateno}</li>
+			<li>개설자 이름: ${cdto.sellername}</li>
+			<li>크라우드이름 : ${cdto.croname}</li>
+		</ul>
+		<ul>
+			<li>개설일자 : ${cdto.opendate}</li>
+			<li>마감일자 : ${cdto.closedate}</li>
+			<li>목표 금액: ${cdto.goalmoney}</li>
+			<li>모인 금액: ${cdto.total}</li>
+			<li>상태 : ${cdto.state}</li>
+		</ul>
+	</div>
+	<div class="blog-header">
+		<h1 class="blog-title">${cdto.title}</h1>
+		<p class="lead blog-description">The official example template of creating a blog with Bootstrap.</p>
+	</div>
+	<div class="row">
+	
+		${cdto.content}<br>
+	
+		<c:if test="${sessionScope.id != null }">
+			<c:if test="${sessionScope.id != cdto.sellerid }">
+				<input type="button" name="funding" value="펀딩하기">
+			</c:if>
+			<c:if test="${sessionScope.id == cdto.sellerid }">
+				<input type="button" name="funding" value="내글이얌">
+			</c:if>
+		</c:if>
+	</div>
+	<nav>
+		<ul class="pager">
+			<li><a href="#">Previous</a></li>
+			<li><a href="#">Next</a></li>
+		</ul>
+	</nav>
+</div>
 </body>
 </html>

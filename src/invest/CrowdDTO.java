@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class CrowdDTO {
 	private int croid;
-	private int sellerid;
+	private int sellerno;
 	private int cateno;
 	private String sellername;
 	private String croname;
@@ -15,6 +15,7 @@ public class CrowdDTO {
 	private int state;
 	private String title;
 	private String content;
+	private String sellerid;
 	
 	public int getCroid() {
 		return croid;
@@ -22,11 +23,11 @@ public class CrowdDTO {
 	public void setCroid(int croid) {
 		this.croid = croid;
 	}
-	public int getSellerid() {
-		return sellerid;
+	public int getSellerno() {
+		return sellerno;
 	}
-	public void setSellerid(int sellerid) {
-		this.sellerid = sellerid;
+	public void setSellerno(int sellerno) {
+		this.sellerno = sellerno;
 	}
 	public int getCateno() {
 		return cateno;
@@ -88,4 +89,11 @@ public class CrowdDTO {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	public String getSellerid() {
+		return sellerid;
+	}
+	public void setSellerid(String sellerid) {
+		this.sellerid = sellerid;
+	}
+	
 }
