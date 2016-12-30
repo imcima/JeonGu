@@ -1,6 +1,7 @@
 package invest;
 
 import java.io.IOException;
+import java.util.Enumeration;
 import java.util.StringTokenizer;
 
 import javax.servlet.RequestDispatcher;
@@ -52,6 +53,7 @@ public class InvestFrontController extends HttpServlet{
 		Action action = null;
 
 		// Redirect 이동 방식 setting
+		// 넘겨 받은 parameter 가 없을 경우.(페이지 이동만 할 경우)
 		// 규칙 : destFile.isRedirect - 최종 이동 경로 : invest/filename.jsp
 		StringTokenizer st = new StringTokenizer(command, ".");		
 		String destFile = st.nextToken();
@@ -59,12 +61,22 @@ public class InvestFrontController extends HttpServlet{
 		System.out.println("command : "+command);
 		System.out.println("destFile : "+destFile);
 		
-		if(isRedirect.equals("r")){
+		Enumeration<String> enu = req.getParameterNames();
+		boolean flag = enu.hasMoreElements();
+		System.out.println("flag : " + flag);
+		if(isRedirect.equals("r")&&(!flag)){
 			forward = new ActionForward();
 			forward.setRedirect(false);
 			forward.setPath("index.jsp?center=invest"+destFile+".jsp");
 		}//if(isRedirect.equals("investr"))	- Redirect 이동 방식
 		
+		if(command.equals("/funding.investr")){
+			forward = new ActionForward();
+			forward.setRedirect(false);
+			String croid = req.getParameter("croid");
+			req.setAttribute("croid", croid);			
+			forward.setPath("index.jsp?center=invest/funding.jsp?croid="+croid);
+		}
 		
 		// forward 이동방식
 		if(command.equals("/board.investf")){
@@ -82,7 +94,7 @@ public class InvestFrontController extends HttpServlet{
 		else if(command.equals("/login.investf")){//fake login
 			System.out.println("/login.investf 진입");
 			HttpSession session = req.getSession(true);
-			session.setAttribute("id", "imcima");
+			session.setAttribute("id", "kang");
 			action = new FakeLoginAction();
 			forward = exec(req, resp, action);
 		}else if(command.equals("/logout.investf")){//fake logout
@@ -90,7 +102,7 @@ public class InvestFrontController extends HttpServlet{
 			HttpSession session = req.getSession(false);
 			session.invalidate();
 			action = new FakeLogoutAction();
-			forward = exec(req, resp, action);
+			forward = exec(req, resp, action);			
 		}
 		
 		// 실제 이동

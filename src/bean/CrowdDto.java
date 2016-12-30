@@ -1,8 +1,8 @@
-package invest;
+package bean;
 
 import java.sql.Date;
 
-public class CrowdDTO {
+public class CrowdDto {
 	private int croid;
 	private int sellerno;
 	private int cateno;

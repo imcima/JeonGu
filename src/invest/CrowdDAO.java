@@ -11,6 +11,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import bean.CrowdDto;
+
 public class CrowdDAO {
 	
 	private Connection con = null;
@@ -31,8 +33,8 @@ public class CrowdDAO {
 		if(pstmt!=null){try {pstmt.close();} catch (SQLException e) {e.printStackTrace();}}
 	}//freeConnection(Connection con, PreparedStatement pstmt, ResultSet rs)
 	
-	private CrowdDTO setCrowdDTO(ResultSet rs){
-		CrowdDTO cdto = new CrowdDTO();		
+	private CrowdDto setCrowdDTO(ResultSet rs){
+		CrowdDto cdto = new CrowdDto();		
 		try {
 			cdto.setCroid(rs.getInt("croid"));
 			cdto.setSellerno(rs.getInt("sellerno"));
@@ -53,14 +55,14 @@ public class CrowdDAO {
 		return cdto;
 	}//setCrowdDTO(ResultSet rs)
 
-	public List<CrowdDTO> getCrowdList() {
-		List<CrowdDTO> list = new ArrayList<CrowdDTO>();
+	public List<CrowdDto> getCrowdList() {
+		List<CrowdDto> list = new ArrayList<CrowdDto>();
 		try {
 			con = getConnection();
 			sql = "select * from crowd";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			CrowdDTO cdto = null;
+			CrowdDto cdto = null;
 			while(rs.next()){
 				cdto = setCrowdDTO(rs);
 				list.add(cdto);				
@@ -73,9 +75,9 @@ public class CrowdDAO {
 		return list;
 	}//getCrowdList()	
 	
-	public CrowdDTO getContent(int croid) {
+	public CrowdDto getContent(int croid) {
 		
-		CrowdDTO cdto = new CrowdDTO();
+		CrowdDto cdto = new CrowdDto();
 		
 		sql = "select * from crowd where croid = "+croid;
 		

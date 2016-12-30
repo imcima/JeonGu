@@ -46,7 +46,8 @@
 	</div>
 	<div class="blog-header">
 		<h1 class="blog-title">${cdto.title}</h1>
-		<p class="lead blog-description">The official example template of creating a blog with Bootstrap.</p>
+		<!-- <p class="lead blog-description">The official example template of creating 
+		a blog with Bootstrap.</p> -->
 	</div>
 	<div class="row">
 	
@@ -54,19 +55,24 @@
 	
 		<c:if test="${sessionScope.id != null }">
 			<c:if test="${sessionScope.id != cdto.sellerid }">
-				<input type="button" name="funding" value="펀딩하기">
+				<nav>
+					<ul class="pager">
+						<li><a href="funding.investr?croid='${cdto.croid }'">펀딩하기</a></li>						
+						<li><a href="funding.investr">펀딩취소</a></li>
+					</ul>req.getp("")
+				</nav>
 			</c:if>
 			<c:if test="${sessionScope.id == cdto.sellerid }">
-				<input type="button" name="funding" value="내글이얌">
+				<nav>
+					펀딩 취소 요청이 있습니다.
+					<ul class="pager">
+						<li><a href="#">펀딩 취소 승인 페이지로 가기</a></li>
+						<li><a href="#">펀딩 폭파</a></li>
+					</ul>
+				</nav>
 			</c:if>
 		</c:if>
-	</div>
-	<nav>
-		<ul class="pager">
-			<li><a href="#">Previous</a></li>
-			<li><a href="#">Next</a></li>
-		</ul>
-	</nav>
+	</div>	
 </div>
 </body>
 </html>
