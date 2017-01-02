@@ -31,13 +31,11 @@
   <servlet-mapping>
     <servlet-name>InvestFrontController</servlet-name>
     <url-pattern>*.investf</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>InvestFrontController1</servlet-name>
-    <servlet-class>invest.InvestFrontController</servlet-class>
-  </servlet>
+  </servlet-mapping>  
   <servlet-mapping>
-    <servlet-name>InvestFrontController1</servlet-name>
+    <servlet-name>InvestFrontController</servlet-name>
     <url-pattern>*.investr</url-pattern>
   </servlet-mapping>
+  
+  
 </web-app>
