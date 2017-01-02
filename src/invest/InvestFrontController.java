@@ -74,7 +74,7 @@ public class InvestFrontController extends HttpServlet{
 			forward = new ActionForward();
 			forward.setRedirect(false);
 			String croid = req.getParameter("croid");
-			req.setAttribute("croid", croid);			
+		//	req.setAttribute("croid", croid);			
 			forward.setPath("index.jsp?center=invest/funding.jsp?croid="+croid);
 		}
 		
@@ -94,7 +94,7 @@ public class InvestFrontController extends HttpServlet{
 		else if(command.equals("/login.investf")){//fake login
 			System.out.println("/login.investf 진입");
 			HttpSession session = req.getSession(true);
-			session.setAttribute("id", "kang");
+			session.setAttribute("id", "lee");
 			action = new FakeLoginAction();
 			forward = exec(req, resp, action);
 		}else if(command.equals("/logout.investf")){//fake logout

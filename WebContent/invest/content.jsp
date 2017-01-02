@@ -11,6 +11,7 @@
 	width: 700px;
 	background-color: white;
 	border-radius: 20px;
+	padding : 20px;
 }
 </style>
 
@@ -20,12 +21,6 @@
 <body>
 
 <br><br><br>
-
-<div class="blog-masthead">
-	<div class="container">
-		
-	</div>
-</div>
     
 <div class="container">
 	<div class="details">
@@ -57,9 +52,11 @@
 			<c:if test="${sessionScope.id != cdto.sellerid }">
 				<nav>
 					<ul class="pager">
-						<li><a href="funding.investr?croid='${cdto.croid }'">펀딩하기</a></li>						
+						<li><a href="funding.investr?croid='${cdto.croid }'">펀딩하기</a></li>
+						<c:if test="${fdto.funno!=0}">
 						<li><a href="funding.investr">펀딩취소</a></li>
-					</ul>req.getp("")
+						</c:if>
+					</ul>
 				</nav>
 			</c:if>
 			<c:if test="${sessionScope.id == cdto.sellerid }">

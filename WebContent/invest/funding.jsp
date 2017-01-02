@@ -10,6 +10,8 @@
 <body>
 <br><br><br><br>
 funding.jsp<br>
-croid : ${croid}
+croid : ${param.croid}
+croid, price 필요. 
+결국 productdto를 가져와야 함.
 </body>
 </html>
