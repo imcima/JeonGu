@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bean.FunddingDto;
 import net.action.Action;
 import net.action.ActionForward;
 
@@ -22,7 +21,7 @@ public class InvestContentAction implements Action {
 		request.setAttribute("cdto", cdao.getContent(croid));
 		ProductDAO pdao = new ProductDAO();
 		request.setAttribute("pdto", pdao.getContent(croid));
-		FunddingDAO fdao = new FunddingDAO();
+		FundingDAO fdao = new FundingDAO();
 		request.setAttribute("fdto", fdao.getContent(id));
 		
 		

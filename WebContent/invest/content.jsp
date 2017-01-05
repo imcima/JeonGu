@@ -37,6 +37,7 @@
 			<li>목표 금액: ${cdto.goalmoney}</li>
 			<li>모인 금액: ${cdto.total}</li>
 			<li>상태 : ${cdto.state}</li>
+			<li>단위 투자금액 : ${pdto.price }
 		</ul>
 	</div>
 	<div class="blog-header">
@@ -52,7 +53,7 @@
 			<c:if test="${sessionScope.id != cdto.sellerid }">
 				<nav>
 					<ul class="pager">
-						<li><a href="funding.investr?croid='${cdto.croid }'">펀딩하기</a></li>
+						<li><a href="funding.investr?croid=${cdto.croid }&price=${pdto.price }">펀딩하기</a></li>
 						<c:if test="${fdto.funno!=0}">
 						<li><a href="funding.investr">펀딩취소</a></li>
 						</c:if>

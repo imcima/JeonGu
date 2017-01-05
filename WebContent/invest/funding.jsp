@@ -6,12 +6,21 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+$(function() {
+	${"#qty"}.
+}
+</script>
 </head>
 <body>
 <br><br><br><br>
 funding.jsp<br>
-croid : ${param.croid}
-croid, price 필요. 
-결국 productdto를 가져와야 함.
+croid : ${param.croid}<br>
+croid, price 필요. <br>
+결국 productdto를 가져와야 함.<br>
+price : ${param.price}<br>
+
+<label>수량</label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value="" name="qty"><br>
+<label>금액</label>
 </body>
 </html>

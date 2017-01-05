@@ -9,10 +9,10 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import bean.FunddingDto;
+import bean.FundingDto;
 
 
-public class FunddingDAO {
+public class FundingDAO {
 	private Connection con = null;
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
@@ -31,22 +31,32 @@ public class FunddingDAO {
 		if(pstmt!=null){try {pstmt.close();} catch (SQLException e) {e.printStackTrace();}}
 	}//freeConnection(Connection con, PreparedStatement pstmt, ResultSet rs)
 	
-	private FunddingDto setFunddingDTO(ResultSet rs){
-		FunddingDto fdto = new FunddingDto();		
-		try {		
+	private FundingDto setFundingDto(ResultSet rs){
+		FundingDto fdto = new FundingDto();		
+		try {
+//			funno	int(11)
+//			croid	int(11)
+//			prodid	int(11)
+//			memberno	int(11)
+//			date	date
+//			invmoney	int(11)
+//			qty	int(3)
+//			state	int(2)
 			fdto.setFunno(rs.getInt("funno"));
 			fdto.setCroid(rs.getInt("croid"));
 			fdto.setProdid(rs.getInt("prodid"));
 			fdto.setMemberno(rs.getInt("memberno"));
 			fdto.setDate(rs.getDate("date"));
 			fdto.setInvmoney(rs.getInt("invmoney"));
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return fdto;
 	}//setProductDTO(ResultSet rs)
-	public FunddingDto getContent(String id) {
-		FunddingDto fdto = new FunddingDto();
+	
+	public FundingDto getContent(String id) {
+		FundingDto fdto = new FundingDto();
 		try {
 			con = getConnection();
 			MemberDAO mdao = new MemberDAO();
@@ -54,7 +64,7 @@ public class FunddingDAO {
 			sql = "select * from fundding where memberno = "+memberno;
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			if(rs.next()) fdto=setFunddingDTO(rs);
+			if(rs.next()) fdto=setFundingDto(rs);
 		} catch (Exception e) {
 			e.printStackTrace();			
 		} finally {

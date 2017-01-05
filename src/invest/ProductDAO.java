@@ -34,14 +34,25 @@ public class ProductDAO {
 	private ProductDto setProductDTO(ResultSet rs){
 		ProductDto pdto = new ProductDto();		
 		try {
-			pdto.setProid(rs.getInt("proid"));
+//			prodid	int(11)
+//			croid	int(11)
+//			cateno	int(11)
+//			prodName	varchar(50)
+//			sellerID	varchar(20)
+//			sellerName	varchar(15)
+//			date	date
+//			price	int(11)
+//			afterprice	int(11)
+//			prodInfo	text
+//			img	varchar(15)
+			pdto.setProid(rs.getInt("prodid"));
 			pdto.setCroid(rs.getInt("croid"));
 			pdto.setCateno(rs.getInt("cateno"));
 			pdto.setProdName(rs.getString("prodName"));
 			pdto.setSellerID(rs.getString("sellerID"));
 			pdto.setSellerName(rs.getString("sellerName"));
 			pdto.setDate(rs.getDate("date"));
-			pdto.setQty(rs.getInt("qty"));
+//			pdto.setQty(rs.getInt("qty"));
 			pdto.setPrice(rs.getInt("price"));
 			pdto.setAfterprice(rs.getInt("afterprice"));
 			pdto.setProdInfo(rs.getString("prodInfo"));

@@ -2,14 +2,36 @@ package bean;
 
 import java.sql.Date;
 
-public class FunddingDto {
+public class FundingDto {
+//	funno	int(11)
+//	croid	int(11)
+//	prodid	int(11)
+//	memberno	int(11)
+//	date	date
+//	invmoney	int(11)
+//	qty	int(3)
+//	state	int(2)
 	private int funno;
 	private int croid;
 	private int prodid;
 	private int memberno;
 	private Date date;
 	private int invmoney;
+	private int qty;
+	private int state;
 	
+	public int getQty() {
+		return qty;
+	}
+	public void setQty(int qty) {
+		this.qty = qty;
+	}
+	public int getState() {
+		return state;
+	}
+	public void setState(int state) {
+		this.state = state;
+	}
 	public int getFunno() {
 		return funno;
 	}
