@@ -27,7 +27,7 @@
 <!-- croid,sellerid,cateno,sellername,croname,opendate,
 closedate,goalmoney,total,state,title,content -->
 								<h3>${l.title }</h3>
-								<textarea class="form-control" readonly="readonly"  
+								<textarea class="form-control" readonly="readonly"
 								style="overflow:hidden;resize:none;height: 70px;">[${l.croname }] ${l.content }
 								</textarea>
 								<div class="progress">

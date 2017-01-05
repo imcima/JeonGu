@@ -175,7 +175,7 @@
 												<c:if test="${sessionScope.id ==null }">
 												<input type="button" onclick="location.href='login.investf'" value="Fake Login">
 												</c:if>
-												<c:if test="${sessionScope.id !=null }">
+												<c:if test="${sessionScope.id !=null }">${id}
 												<input type="button" onclick="location.href='logout.investf'" value="Fake Logout">
 												</c:if>
 											</div>
@@ -194,7 +194,7 @@
 						</ul></li>
 					<li><a href="#">이용안내</a></li>
 					<li><a href="mypage/myPage.jsp">My Page</a></li>
-					<li><button type="button" class="btn btn-primary" onclick=""
+					<li><button type="button" class="btn btn-primary" onclick="location.href='form.apply'"
 							style="margin: 8px">프로젝트 신청</button></li>
 
 

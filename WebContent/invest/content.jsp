@@ -66,6 +66,7 @@
 					<ul class="pager">
 						<li><a href="#">펀딩 취소 승인 페이지로 가기</a></li>
 						<li><a href="#">펀딩 폭파</a></li>
+						<li><a href="#">수정</a></li>						
 					</ul>
 				</nav>
 			</c:if>
