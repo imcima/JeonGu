@@ -7,27 +7,30 @@ import javax.servlet.http.HttpSession;
 import net.action.Action;
 import net.action.ActionForward;
 
-public class InvestContentAction implements Action {
+public class CancelAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("InvestContentAction 진입");
-		int croid = Integer.parseInt(request.getParameter("croid"));
-		System.out.println("croid 생성 확인");
+		int funno = Integer.parseInt(request.getParameter("funno"));
+		
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		
-		CrowdDAO cdao = new CrowdDAO();
-		request.setAttribute("cdto", cdao.getContent(croid));
-		ProductDAO pdao = new ProductDAO();
-		request.setAttribute("pdto", pdao.getContent(croid));
+//		CrowdDAO cdao = new CrowdDAO();
+//		request.setAttribute("cdto", cdao.getContent(croid));
+//		ProductDAO pdao = new ProductDAO();
+//		request.setAttribute("pdto", pdao.getContent(croid));
 		FundingDAO fdao = new FundingDAO();
-		request.setAttribute("fdto", fdao.getContent(id));
-		
-		
+//		int croid = 
+				fdao.cancelFunding(funno);
+//		request.setAttribute("croid", croid);
+				
 		ActionForward forward=new ActionForward();
 		forward.setRedirect(false);
-		forward.setPath("index.jsp?center=invest/content.jsp");
+		forward.setPath("content.investf");
+		
+//		forward.setPath("index.jsp?center=invest/content.jsp?croid="+croid);
 		return forward;
 	}
 

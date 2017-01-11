@@ -55,7 +55,7 @@
 					<ul class="pager">
 						<li><a href="funding.investr?croid=${cdto.croid }&price=${pdto.price }">펀딩하기</a></li>
 						<c:if test="${fdto.funno!=0}">
-						<li><a href="funding.investr">펀딩취소</a></li>
+							<li><a href="cancelmenu.investr?croid=${cdto.croid }">펀딩취소</a></li>							
 						</c:if>
 					</ul>
 				</nav>

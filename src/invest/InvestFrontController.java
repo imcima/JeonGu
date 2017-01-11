@@ -74,8 +74,13 @@ public class InvestFrontController extends HttpServlet{
 			forward = new ActionForward();
 			forward.setRedirect(false);
 			String croid = req.getParameter("croid");
-		//	req.setAttribute("croid", croid);			
 			forward.setPath("index.jsp?center=invest/funding.jsp?croid="+croid);
+		}if(command.equals("/cancelmenu.investr")){
+			forward = new ActionForward();
+			forward.setRedirect(false);
+			String croid = req.getParameter("croid");
+//			forward.setPath("index.jsp?center=invest/cancel.jsp?croid="+croid);
+			forward.setPath("cancelmenu.investf");
 		}
 		
 		// forward 이동방식
@@ -86,6 +91,19 @@ public class InvestFrontController extends HttpServlet{
 		}else if(command.equals("/content.investf")){
 			System.out.println("/content.investf 진입");
 			action = new InvestContentAction();
+			forward=exec(req, resp, action);
+		}else if(command.equals("/pay.investf")){
+			System.out.println("/pay.investf 진입");
+			action = new PayAction();
+			forward=exec(req, resp, action);
+		}else if(command.equals("/cancelmenu.investf")){
+			System.out.println("/cancelmenu.investf 진입");
+			action = new CancelMenuAction();
+			forward=exec(req, resp, action);
+		}else if(command.equals("/cancel.investf")){
+			System.out.println("/cancel.investf 진입");
+			System.out.println("req.getParameter(croid) : "+req.getParameter("croid"));
+			action = new CancelAction();
 			forward=exec(req, resp, action);
 		}
 		
@@ -112,7 +130,7 @@ public class InvestFrontController extends HttpServlet{
 				System.out.println("center : "+req.getAttribute("center"));
 				resp.sendRedirect(forward.getPath());
 			} else {
-				System.out.println("esle");
+				System.out.println("investf");
 				System.out.println("center : "+req.getAttribute("center"));
 				RequestDispatcher dis = req.getRequestDispatcher(forward.getPath());
 				dis.forward(req, resp);

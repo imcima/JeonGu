@@ -4,12 +4,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import bean.FundingDto;
+import bean.ProductDto;
 
 
 public class FundingDAO {
@@ -48,6 +51,8 @@ public class FundingDAO {
 			fdto.setMemberno(rs.getInt("memberno"));
 			fdto.setDate(rs.getDate("date"));
 			fdto.setInvmoney(rs.getInt("invmoney"));
+			fdto.setQty(rs.getInt("qty"));
+			fdto.setState(rs.getInt("state"));
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -61,11 +66,12 @@ public class FundingDAO {
 			con = getConnection();
 			MemberDAO mdao = new MemberDAO();
 			int memberno = mdao.getMemberNo(id);
-			sql = "select * from fundding where memberno = "+memberno;
+			sql = "select * from funding where memberno = "+memberno;
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()) fdto=setFundingDto(rs);
 		} catch (Exception e) {
+			System.out.println("FundingDAO getContent() 에러 ");
 			e.printStackTrace();			
 		} finally {
 			freeConnection(con, pstmt, rs);			
@@ -73,6 +79,77 @@ public class FundingDAO {
 		return fdto;
 	}//getContent(String id)
 	
+	public void payFunding(int croid, int qty, String id){
+		try {
+			con = getConnection();
+			MemberDAO mdao = new MemberDAO();
+			int memberno = mdao.getMemberNo(id);
+			
+			ProductDAO pdao = new ProductDAO();
+			ProductDto pdto = pdao.getContent(croid);
+			
+			sql = "insert into funding(croid, prodid, memberno, date, invmoney, qty, state) "
+					+ "values (?,?,?,now(),?,?,0)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, croid);
+			pstmt.setInt(2, pdto.getProid());
+			pstmt.setInt(3, memberno);
+			pstmt.setInt(4, pdto.getPrice()*qty);
+			pstmt.setInt(5, qty);
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			freeConnection(con, pstmt, rs);
+		}
+	}//payFunding(int croid, int qty, String id)
+	public List<FundingDto> getFundingList(int croid, String id) {
+		List<FundingDto> flist = new ArrayList<>();
+		System.out.println("getFundingList 진입");
+		try {
+			
+			con = getConnection();
+			MemberDAO mdao = new MemberDAO();
+			int memberno = mdao.getMemberNo(id);
+			
+			sql = "select * from funding where croid=? and memberno=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, croid);
+			pstmt.setInt(2, memberno);			
+			rs = pstmt.executeQuery();
+						
+			while (rs.next()) flist.add(setFundingDto(rs));
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			freeConnection(con, pstmt, rs);
+		}
+		
+		return flist;
+	}//getFundingList(int croid, String id)
 	
+	public int cancelFunding(int funno) {
+		int croid=0;
+		try {
+			con = getConnection();
+			sql = "select croid from funding where funno=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, funno);
+			rs = pstmt.executeQuery();
+			if(rs.next()) croid = rs.getInt("croid");
+			
+			sql = "delete from funding where funno=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, funno);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();			
+		} finally {
+			freeConnection(con, pstmt, rs);
+		}
+		return croid;
+	}//cancelFunding(int funno)
 	
 }//class FunddingDAO
