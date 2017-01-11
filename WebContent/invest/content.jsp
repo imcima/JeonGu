@@ -13,6 +13,9 @@
 	border-radius: 20px;
 	padding : 20px;
 }
+.alink:HOVER{
+	cursor: pointer;
+}
 </style>
 
 <link href="blog.css" rel="stylesheet">
@@ -57,6 +60,7 @@
 						<c:if test="${fdto.funno!=0}">
 							<li><a href="cancelmenu.investr?croid=${cdto.croid }">펀딩취소</a></li>							
 						</c:if>
+						<li><a onclick="history.back()" class="alink">돌아가기</a></li>
 					</ul>
 				</nav>
 			</c:if>
@@ -66,11 +70,13 @@
 					<ul class="pager">
 						<li><a href="#">펀딩 취소 승인 페이지로 가기</a></li>
 						<li><a href="#">펀딩 폭파</a></li>
-						<li><a href="#">수정</a></li>						
+						<li><a href="#">수정</a></li>	
+						<li><a onclick="history.back()" class="alink">돌아가기</a></li>					
 					</ul>
 				</nav>
 			</c:if>
 		</c:if>
+		
 	</div>	
 </div>
 </body>
