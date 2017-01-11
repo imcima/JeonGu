@@ -54,29 +54,41 @@
 	
 		<c:if test="${sessionScope.id != null }">
 			<c:if test="${sessionScope.id != cdto.sellerid }">
-				<nav>
-					<ul class="pager">
-						<li><a href="funding.investr?croid=${cdto.croid }&price=${pdto.price }">펀딩하기</a></li>
-						<c:if test="${fdto.funno!=0}">
-							<li><a href="cancelmenu.investr?croid=${cdto.croid }">펀딩취소</a></li>							
-						</c:if>
-						<li><a onclick="history.back()" class="alink">돌아가기</a></li>
-					</ul>
-				</nav>
+				<form action="board.investf" id="frm">
+					<nav>
+						<ul class="pager">
+							<li><a href="funding.investr?croid=${cdto.croid }&price=${pdto.price }">펀딩하기</a></li>
+							<c:if test="${fdto.funno!=0}">
+								<li><a href="cancelmenu.investr?croid=${cdto.croid }">펀딩취소</a></li>							
+							</c:if>
+							<li>
+								<input type="hidden" name="croid" value="${cdto.croid }">
+								<a href="#" onclick="document.getElementById('frm').submit();" class="alink">돌아가기</a>
+							</li>
+						</ul>
+					</nav>
+				</form>
 			</c:if>
 			<c:if test="${sessionScope.id == cdto.sellerid }">
-				<nav>
-					펀딩 취소 요청이 있습니다.
+			<form action="board.investf" id="frmback">
+				<nav>					
 					<ul class="pager">
-						<li><a href="#">펀딩 취소 승인 페이지로 가기</a></li>
-						<li><a href="#">펀딩 폭파</a></li>
-						<li><a href="#">수정</a></li>	
-						<li><a onclick="history.back()" class="alink">돌아가기</a></li>					
+						<!-- <li><a href="#">펀딩 취소 승인 페이지로 가기</a></li> -->
+						<li><a href="delCrowd.apply?croid=${cdto.croid}">펀딩 폭파</a></li>
+						<li><a href="croimod.apply?croid=${cdto.croid}">수정</a></li>	
+						<li><a href="#" onclick="document.getElementById('frmback').submit();" class="alink">돌아가기</a></li>					
 					</ul>
 				</nav>
+			</form>
 			</c:if>
 		</c:if>
-		
+		<c:if test="${sessionScope.id == null }">
+			<form action="board.investf" id="frmbb">
+				<ul class="pager">
+					<li><a href="#" onclick="document.getElementById('frmbb').submit();" class="alink">돌아가기</a></li>
+				</ul>
+			</form>
+		</c:if>
 	</div>	
 </div>
 </body>

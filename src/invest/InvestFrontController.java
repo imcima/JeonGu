@@ -112,7 +112,7 @@ public class InvestFrontController extends HttpServlet{
 		else if(command.equals("/login.investf")){//fake login
 			System.out.println("/login.investf 진입");
 			HttpSession session = req.getSession(true);
-			session.setAttribute("id", "imcima");
+			session.setAttribute("id", "lee");
 			action = new FakeLoginAction();
 			forward = exec(req, resp, action);
 		}else if(command.equals("/logout.investf")){//fake logout
